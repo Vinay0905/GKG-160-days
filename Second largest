@@ -1,0 +1,28 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+
+using namespace std;
+
+
+// } Driver Code Ends
+// User function template for C++
+class Solution {
+  public:
+    // Function returns the second
+    // largest elements
+    int getSecondLargest(vector<int> &arr){
+        int l=INT_MIN ,s=INT_MIN;
+        for(int num : arr){
+            if(num>l){
+                s=l;
+                l=num;
+            }
+            else if(num>s && num<l){
+                s=num;
+                
+            }
+        }
+        return (s==INT_MIN)?-1:s;
+    }
+    };
+    
