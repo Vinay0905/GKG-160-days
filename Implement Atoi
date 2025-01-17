@@ -1,0 +1,50 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+class Solution {
+public:
+    int myAtoi(char *s) {
+        int n = strlen(s); // Use strlen to get the length of the char array
+        int i = 0;
+
+        // Skip leading whitespaces
+        while (i < n && isspace(s[i])) {
+            i++;
+        }
+
+        // Determine the sign
+        int sign = 1;
+        if (i < n && (s[i] == '+' || s[i] == '-')) {
+            sign = (s[i] == '-') ? -1 : 1;
+            i++;
+        }
+
+        // Convert characters to integer
+        long long res = 0;
+        while (i < n && isdigit(s[i])) {
+            res = res * 10 + (s[i] - '0');
+            if (res * sign > INT_MAX) return INT_MAX; // Check for overflow
+            if (res * sign < INT_MIN) return INT_MIN; // Check for underflow
+            i++;
+        }
+
+        return res * sign;
+    }
+};
+
+//{ Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        char s[20];
+        cin >> s;
+        Solution ob;
+        int ans = ob.myAtoi(s);
+        cout << ans << endl;
+        cout << "~" << endl;
+    }
+}
+// } Driver Code Ends
