@@ -1,0 +1,83 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+
+class Solution {
+  public:
+    // Function to check if two strings are rotations of each other or not.
+    bool areRotations(string &s1, string &s2) {
+        if(s1.length()!=s2.length()){
+            return false;
+        }
+        
+        string pat=s2;
+        string s3=s1+s1;
+        int p=s2.size();
+        int t=s3.size();
+        vector<int> ans;
+        vector<int> pitable(p);
+        int j=0;
+        pitable[0]=0;
+        for(int i=1;i<p;i++){
+            if(s2[i]==s2[j]){
+                j++;
+                pitable[i]=j;
+            }
+            else{
+                j=0;
+                if(s2[i]==s2[j]){
+                    j++;
+                }
+                pitable[i]=j;
+            }
+        }
+        int i=0;
+        j=0;
+        int f=0;
+        while(i<t){
+            if(s3[i]==s2[j]){
+                i++;
+                j++;
+                if(j==p)return true;
+            }
+            else{
+                if(j==0){
+                    i++;
+                }
+                else{
+                    j=pitable[j-1];
+                
+            }
+        }
+      }  
+      return false;  
+    } 
+};
+
+//{ Driver Code Starts.
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        string s1;
+        string s2;
+        cin >> s1 >> s2;
+        Solution sol;
+        int result = sol.areRotations(s1, s2);
+        if (result) {
+            cout << "true" << endl;
+
+        } else {
+            cout << "false" << endl;
+        }
+        cout << "~"
+             << "\n";
+    }
+    return 0;
+}
+
+// } Driver Code Ends
